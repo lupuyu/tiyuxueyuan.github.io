@@ -2,18 +2,19 @@
 namespace app\index\controller;
 
 use app\index\model\Teacher;
+use think\Controller;
 
-class TeacherController
+class TeacherController  extends Controller
 {
     // 获取教师数据列表
     public function index()
     {
         $list = Teacher::all();
-        foreach ($list as $Teacher) {
-            echo $Teacher->name . '<br/>';
-            echo $Teacher->email . '<br/>';
-            echo '----------------------------------<br/>';
-        }
+        $list = Teacher::paginate(10);
+        $this->assign('list', $list);
+        $this->assign('count', count($list));
+        return $this->fetch();
+        
     }
     // 新增教师数据
     public function add()
@@ -28,9 +29,10 @@ class TeacherController
     // 读取教师数据
     public function read($id='')
     {
-        $teacher = teacher::get($id);
-        echo $teacher->name . '<br/>';
-        echo $teacher->email . '<br/>';
+        $teacher = Teacher::get($id);
+        // dump($teacher->hidden(['create_time','update_time'])->toArray());
+        dump($teacher->visible(['id','name','email'])->toArray());
+        //echo $teacher->toJson();// 读取用户数据输出JSON
     }
     // 更新教师数据
     

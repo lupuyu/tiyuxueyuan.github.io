@@ -2,20 +2,21 @@
 namespace app\index\controller;
 
 use app\index\model\Student;
-use app\index\model\StudentE;
+use think\Controller;
 
 
-class StudentController
+
+class StudentController extends Controller
 {
     // 获取学生数据列表
     public function index()
     {
         $list = Student::all();
-        foreach ($list as $Student) {
-            echo $Student->name . '<br/>';
-            echo $Student->email . '<br/>';
-            echo '----------------------------------<br/>';
-        }
+        $list = Student::paginate(10);
+        $this->assign('list', $list);
+        $this->assign('count', count($list));
+        return $this->fetch();
+
     }
     // 新增学生数据
     public function add()
@@ -37,6 +38,9 @@ class StudentController
         $Student = Student::get($id);
         echo $Student->name . '<br/>';
         echo $Student->email . '<br/>';
+        echo $Student->stuex->birth .'<br/>';
+        echo $Student->stuex->father_name .'<br/>';
+        echo $Student->stuex->mother_name .'<br/>';
     }
 
     // 更新学生数据
@@ -44,7 +48,7 @@ class StudentController
     public function update($id)
     {
         $Student           = Student::get($id);
-        $Student->birth = = '1995-09-26';
+        $Student->birth = '1995-09-26';
         if (false !== $Student->save()) {
             return '更新学生成功';
         } else {

@@ -12,6 +12,7 @@ class StuEx extends Model
     protected $type = [
         'birth'    => 'timestamp:Y/m/d',
         'update_time'    => 'timestamp:Y/m/d',
+        'create_time'    => 'timestamp:Y/m/d',
 
     ];
 
@@ -19,9 +20,9 @@ class StuEx extends Model
     protected $createTime = 'create_time';
     protected $updateTime = 'update_time';
 
-    // email查询
-    protected function scopeEmail($query)
+    public function student()
     {
-        $query->where('email', 'thinkphp@qq.com');
+        // 档案 BELONGS TO 关联用户
+        return $this->belongsTo('student');
     }
 }

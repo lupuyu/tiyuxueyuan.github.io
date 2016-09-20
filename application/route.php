@@ -24,6 +24,7 @@ return [
     'user/index'      => 'index/user/index',
     'user/create'     => 'index/user/create',
     'user/add'        => 'index/user/add',
+    'user/adds'        => 'index/user/adds',
     'user/add_list'   => 'index/user/addList',    
     'user/update/:id' => 'index/user/update',
     'user/delete/:id' => 'index/user/delete',
@@ -38,4 +39,5 @@ return [
     'StuEx/index'      => 'index/StuEx/index',
     'StuEx/:id'        => 'index/StuEx/read',
     'StuEx/update/:id' => 'index/StuEx/update',
+    'kclass/index'      => 'index/kclass/index',
 ];
