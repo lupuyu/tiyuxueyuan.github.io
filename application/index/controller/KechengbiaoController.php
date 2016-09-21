@@ -1,21 +1,38 @@
 <?php
 namespace app\index\controller;
 use app\index\model\Kechengbiao;
+use app\index\model\Kclass;
+
 use think\Controller;
 /**
  * 课程管理
  */
-class KechengbiaoController 
+class KechengbiaoController extends Controller
 {
     public function index()
     {
-        // 这里自行添加代码，进行练习。
+        $list = kechengbiao::all();
+        $this->assign('list', $list);
+        return $this->fetch();
     }
 
     // 创建用户数据页面
     public function edit()
     {
-        return view();
+        $id = input('get.id/d');
+
+        // 判断是否存在当前记录
+        if (false === $kechengbiao = kechengbiao::get($id))
+        {
+            return $this->error('未找到ID为' . $id . '的记录');
+        }
+
+        // 取出班级列表
+        $klasses = Kclass::all();
+        $this->assign('klasses', $klasses);
+
+        $this->assign('kechengbiao', $kechengbiao);
+        return $this->fetch();
     }
 
     public function add()
