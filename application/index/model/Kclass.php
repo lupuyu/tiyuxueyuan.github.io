@@ -19,4 +19,11 @@ class Kclass extends Model
         $Teacher = Teacher::get($teacherId);
         return $Teacher;
     }
+
+
+    // 定义关联一个班有好多学生
+    public function students()
+    {
+        return $this->hasMany('student');
+    }
 }

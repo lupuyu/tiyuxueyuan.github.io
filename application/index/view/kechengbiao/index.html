@@ -1,60 +1,59 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>查看用户列表</title>
-<style>
-body{
-    color: #333;
-    font: 16px Verdana, "Helvetica Neue", helvetica, Arial, 'Microsoft YaHei', sans-serif;
-    margin: 0px;
-    padding: 20px;
-}
-
-a{
-    color: #868686;
-    cursor: pointer;
-}
-a:hover{
-    text-decoration: underline;
-}
-h2{
-    color: #4288ce;
-    font-weight: 400;
-    padding: 6px 0;
-    margin: 6px 0 0;
-    font-size: 28px;
-    border-bottom: 1px solid #eee;
-}
-div{
-margin:8px;
-}
-.info{
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.copyright{
-    margin-top: 24px;
-    padding: 12px 0;
-  border-top: 1px solid #eee;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>查看课程表</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
 </head>
-<body>
-<h2>课程表</h2> 
-{volist name="list" id="kechengbiao" }
-<div class="info">
-ID：{$kechengbiao.id}<br/>
-学生id：{$kechengbiao.student_id}<br/>
-班级id：{$kechengbiao.kclass_id}<br/>
-开始时间：{$kechengbiao.start_time}<br/>
-</div>
-{/volist}
-<div class="copyright">
-    <a title="官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
-    <span>V5</span> 
-    <span>{ 十年磨一剑-为API开发设计的高性能框架 }</span>
-</div>
+
+<body class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    <form class="form-inline" action="{:url('', input('get.'))}">
+                        <div class="form-group">
+                            <label class="sr-only" for="name">姓名</label>
+                            <input name="name" type="text" class="form-control" placeholder="姓名..." value={:input( 'get.name')}>
+                        </div>
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+                    </form>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="{:url('add')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
+                </div>
+            </div>
+            <hr />
+            <table class="table table-hover table-bordered">
+                <tr class="info">
+                    <th>ID</th>
+                    <th>班级</th>
+                    <th>课程</th>
+                    <th>学生</th>
+                    <th>教师</th>
+                    <td>教室</td>
+                    <th>开始</th>
+                    <th>结束</th>
+                    <th>操作</th>
+                </tr>
+                {volist name="kechengbiao" id="kechengbiao"}
+                <tr>
+                    <td>{$kechengbiao.id}</td>
+                    <td>暂不显示</td>
+                    <td>暂不显示</td>
+                    <td>{$kechengbiao->getStudent()->getData('name')}</td>
+                    <td>暂不显示</td>
+                    <td>{$kechengbiao.class}</td>
+                    <td>暂不显示</td>
+                    <td>暂不显示</td>
+                    <td><a class="btn btn-danger btn-sm" href=""><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>&nbsp;<a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $kechengbiao->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a></td>
+                </tr>
+                {/volist}
+            </table>
+             </div>
+    </div>
 </body>
+
 </html>

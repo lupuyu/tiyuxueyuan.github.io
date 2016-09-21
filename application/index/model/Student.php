@@ -12,4 +12,9 @@ class Student extends Model
     // protected $insert = ['status' => 1];
 
     // 定义关联方法
+    public function kclass()
+    {
+        return $this->belongsTo('kclass');
+    }
 }
+

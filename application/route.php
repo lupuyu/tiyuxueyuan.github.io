@@ -39,5 +39,4 @@ return [
     'StuEx/index'      => 'index/StuEx/index',
     'StuEx/:id'        => 'index/StuEx/read',
     'StuEx/update/:id' => 'index/StuEx/update',
-    'kclass/index'      => 'index/kclass/index',
 ];
