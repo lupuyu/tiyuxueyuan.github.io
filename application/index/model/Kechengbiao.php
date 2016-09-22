@@ -13,6 +13,18 @@ class Kechengbiao extends Model
 
     ]; 
 
+    // 定义自动完成的属性
+
+
+    // status属性读取器
+    protected function getStatusAttr($value)
+    {
+        $status = [ 0 => '未考勤', 1 => '正常', 2 => '旷课', 3 => '请假', 4 => '迟到', 5 => '早退'];
+        return $status[$value];
+    }
+
+
+
     /**
      * 获取对应的教师（辅导员）信息
      * @return Teacher 教师
@@ -44,4 +56,6 @@ class Kechengbiao extends Model
         $Course = Course::get($courseId);
         return $Course;
     }
+
+
 }

@@ -23,7 +23,6 @@
                 </div>
                 <div class="col-md-4 text-right">
                     <a href="{:url('add')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
-                    <a href="{:url('savea')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;保存考勤</a>
                 </div>
             </div>
             <hr />
@@ -39,23 +38,19 @@
                     <th>结束</th>
                     <th>操作</th>
                 </tr>
-                {volist name="kechengbiao" id="kechengbiao"}
                 <tr>
                     <td>{$kechengbiao.id}</td>
                     <td>暂不显示</td>
                     <td>暂不显示</td>
-                    <td>{$kechengbiao.student_id}</td>
+                    <td>{$kechengbiao->getStudent()->getData('name')}</td>
                     <td>暂不显示</td>
                     <td>{$kechengbiao.class}</td>
-                    <td>{$kechengbiao.status}
-                    </td>
+                    <td>{$kechengbiao.status}</td>
                     <td>暂不显示</td>
-                    <td><a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $kechengbiao.id)}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;考勤</a></td>
+                    <td><a class="btn btn-danger btn-sm" href=""><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>&nbsp;<a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $kechengbiao->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a></td>
                 </tr>
-                {/volist}
-
             </table>
-        </div>
+             </div>
     </div>
 </body>
 

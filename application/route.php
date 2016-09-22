@@ -36,7 +36,8 @@ return [
     'Student/update/:id' => 'index/Student/update',
     'Student/delete/:id' => 'index/Student/delete',
     'Student/:id'        => 'index/Student/read',
-    'StuEx/index'      => 'index/StuEx/index',
-    'StuEx/:id'        => 'index/StuEx/read',
-    'StuEx/update/:id' => 'index/StuEx/update',
+
+
+
+
 ];
